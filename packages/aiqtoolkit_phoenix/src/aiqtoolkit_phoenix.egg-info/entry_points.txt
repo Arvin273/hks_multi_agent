@@ -1,0 +1,2 @@
+[aiq.components]
+aiq_phoenix = aiq.plugins.phoenix.register

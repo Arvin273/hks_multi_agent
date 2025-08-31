@@ -1,0 +1,2 @@
+[aiq.components]
+aiq_mysql = aiq.plugins.mysql.register

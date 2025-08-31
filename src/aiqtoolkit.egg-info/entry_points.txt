@@ -1,0 +1,20 @@
+[aiq.components]
+aiq_agents = aiq.agent.register
+aiq_authentication = aiq.authentication.register
+aiq_embedders = aiq.embedder.register
+aiq_evaluators = aiq.eval.register
+aiq_inference_time_scaling = aiq.experimental.inference_time_scaling.register
+aiq_llms = aiq.llm.register
+aiq_object_stores = aiq.object_store.register
+aiq_observability = aiq.observability.register
+aiq_retrievers = aiq.retriever.register
+aiq_tools = aiq.tool.register
+
+[aiq.front_ends]
+aiq_front_ends = aiq.front_ends.register
+
+[aiq.registry_handlers]
+aiq_registry_handlers = aiq.registry_handlers.register
+
+[console_scripts]
+aiq = aiq.cli.main:run_cli

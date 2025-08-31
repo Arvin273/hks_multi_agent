@@ -1,0 +1,2 @@
+[aiq.components]
+aiq_zep_cloud = aiq.plugins.zep_cloud.register

@@ -1,0 +1,12 @@
+pyproject.toml
+src/aiq/plugins/s3/__init__.py
+src/aiq/plugins/s3/object_store.py
+src/aiq/plugins/s3/register.py
+src/aiq/plugins/s3/s3_object_store.py
+src/aiqtoolkit_s3.egg-info/PKG-INFO
+src/aiqtoolkit_s3.egg-info/SOURCES.txt
+src/aiqtoolkit_s3.egg-info/dependency_links.txt
+src/aiqtoolkit_s3.egg-info/entry_points.txt
+src/aiqtoolkit_s3.egg-info/requires.txt
+src/aiqtoolkit_s3.egg-info/top_level.txt
+tests/test_s3_object_store.py

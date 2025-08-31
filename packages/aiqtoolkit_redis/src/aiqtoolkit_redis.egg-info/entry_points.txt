@@ -1,0 +1,2 @@
+[aiq.components]
+aiq_redis = aiq.plugins.redis.register

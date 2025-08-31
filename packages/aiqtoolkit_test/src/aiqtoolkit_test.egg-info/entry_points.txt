@@ -1,0 +1,5 @@
+[aiq.components]
+aiqtoolkit-test = aiq.test.register
+
+[pytest11]
+aiqtoolkit-test = aiq.test.plugin

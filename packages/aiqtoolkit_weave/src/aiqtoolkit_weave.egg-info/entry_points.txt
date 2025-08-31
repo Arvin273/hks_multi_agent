@@ -1,0 +1,2 @@
+[aiq.components]
+aiqtoolkit_weave = aiq.plugins.weave.register

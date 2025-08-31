@@ -1,0 +1,2 @@
+[aiq.components]
+aiq_llama_index = aiq.plugins.llama_index.register

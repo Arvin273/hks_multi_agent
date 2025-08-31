@@ -1,0 +1,2 @@
+[aiq.components]
+aiq_semantic_kernel = aiq.plugins.semantic_kernel.register

@@ -1,0 +1,2 @@
+[aiq.components]
+aiq_ragaai = aiq.plugins.ragaai.register

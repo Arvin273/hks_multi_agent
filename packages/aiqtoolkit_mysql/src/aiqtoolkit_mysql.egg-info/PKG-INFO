@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: aiqtoolkit-mysql
+Version: 0.1.dev6+g9a12e26ff.d20250825
+Summary: Subpackage for MySQL-based object store integration in AIQ toolkit
+Keywords: ai,agents,memory,data store
+Classifier: Programming Language :: Python
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: aiqtoolkit
+Requires-Dist: aiomysql>=0.2.0

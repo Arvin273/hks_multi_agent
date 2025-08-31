@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: aiqtoolkit-s3
+Version: 0.1.dev6+g9a12e26ff.d20250825
+Summary: Subpackage for S3-compatible object store integration in AIQ toolkit
+Keywords: ai,agents,memory,data store
+Classifier: Programming Language :: Python
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: aiqtoolkit
+Requires-Dist: aioboto3>=11.0.0

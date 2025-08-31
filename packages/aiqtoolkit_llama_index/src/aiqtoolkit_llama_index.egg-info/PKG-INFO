@@ -1,0 +1,39 @@
+Metadata-Version: 2.4
+Name: aiqtoolkit-llama-index
+Version: 0.1.dev6+g9a12e26ff.d20250825
+Summary: Subpackage for Llama-Index integration in AIQtoolkit
+Keywords: ai,rag,agents
+Classifier: Programming Language :: Python
+Requires-Python: <3.13,>=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: aiqtoolkit~=1.2
+Requires-Dist: llama-index-core==0.12.21
+Requires-Dist: llama-index-embeddings-nvidia==0.3.1
+Requires-Dist: llama-index-llms-bedrock==0.3.8
+Requires-Dist: llama-index-llms-nvidia==0.3.1
+Requires-Dist: llama-index-readers-file==0.4.4
+Requires-Dist: llama-index==0.12.21
+
+<!--
+SPDX-FileCopyrightText: Copyright (c) 2025, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+SPDX-License-Identifier: Apache-2.0
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+![NVIDIA Agent Intelligence Toolkit](https://media.githubusercontent.com/media/NVIDIA/NeMo-Agent-Toolkit/refs/heads/main/docs/source/_static/aiqtoolkit_banner.png "AIQ toolkit banner image")
+
+# NVIDIA Agent Intelligence Toolkit Subpackage
+This is a subpackage for Llama-Index integration in AIQ toolkit.
+
+For more information about AIQ toolkit, please visit the [AIQ toolkit package](https://pypi.org/project/aiqtoolkit/).

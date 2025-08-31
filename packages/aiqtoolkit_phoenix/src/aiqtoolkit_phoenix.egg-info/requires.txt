@@ -1,0 +1,2 @@
+aiqtoolkit[opentelemetry]~=1.2
+arize-phoenix~=6.1

@@ -1,0 +1,2 @@
+aiqtoolkit[opentelemetry]~=1.2
+ragaai-catalyst<2.3,>=2.2.0

@@ -1,0 +1,2 @@
+[aiq.components]
+aiq_crewai = aiq.plugins.crewai.register

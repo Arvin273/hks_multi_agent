@@ -1,0 +1,3 @@
+[aiq.components]
+aiq_langchain = aiq.plugins.langchain.register
+aiq_langchain_tools = aiq.plugins.langchain.tools.register
