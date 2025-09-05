@@ -84,7 +84,7 @@
 
 每个智能体可配置多个**工具**。
 
-<img src="./assets/%E6%9C%AA%E5%91%BD%E5%90%8D%E7%BB%98%E5%9B%BE.drawio.png" alt="未命名绘图.drawio" style="zoom: 67%;" />
+<img src="./assets/%E6%9C%AA%E5%91%BD%E5%90%8D%E7%BB%98%E5%9B%BE.jpg" alt="未命名绘图" style="zoom:67%;" />
 
 ### 3.2 主智能体
 
