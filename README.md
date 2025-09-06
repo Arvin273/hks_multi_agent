@@ -1,10 +1,25 @@
-# 🚀 多智能体协作的企业知识文档智能问答系统
+# 🚀 基于主动式 NLI 意图推理与跨源 RAG 多智能体协同的企业知识文档智能问答系统
 
-## 🎯 1. 项目介绍
+## 🎯 1. 项目概述
 
-为解决**企业知识孤岛**与**低效检索**等难题，我们团队基于NVIDIA NeMo Agent Toolkit框架，融合**LLM、Prompt Engineering、RAG、Tool Calling、MCP、Multi_Agent**等技术，开发了**多智能体协作的企业知识文档智能问答系统**。
+### 1.1 项目背景
 
-系统包含一个**主智能体**和三个专家智能体（**文档处理专家、联网搜索专家、回答专家**）。主智能体负责分析用户任务，**自动调度**各专家智能体协同完成工作。
+项目聚焦企业知识管理中**"知识孤岛"分散、检索低效、决策支持薄弱**的三大痛点，基于 **NVIDIA NeMo Agent Toolkit** 框架，融合**主动式 NLI 意图推理**、**跨源 RAG 检索增强生成**、**MCP 多智能体协作**等前沿技术，开发了企业级智能知识问答系统。
+
+### 1.2 核心创新
+
+- **🧠 智能意图识别**：基于自然语言推理（NLI）三分类模型的主动式意图识别，支持多语言场景自适应与硬件感知资源动态分配
+- **🔗 跨源知识融合**：构建"内部知识库语义检索 + 外部权威资源补充"的全维度 RAG 知识获取机制
+- **🤖 多智能体协同**：基于 MCP 协议的标准化协作体系，实现主智能体与专家智能体的精准联动
+- **⚡ 硬件优化加速**：采用 NVIDIA A100 GPU + CUDA 优化 + TensorRT 推理加速，确保系统实时响应
+
+### 1.3 系统架构
+
+系统包含**1个主智能体**和**3个专家智能体**：
+- **主智能体**：任务解析与智能调度中枢
+- **文档处理专家**：企业知识库管理（检索、插入、删除）
+- **联网搜索专家**：外部权威资源补充
+- **回答专家**：多源信息整合与输出
 
 **在线体验**：http://chat.hks.free4inno.com/
 
@@ -76,22 +91,48 @@
 
 
 
-## 🏗️ 3. 技术架构
+## 🏗️ 3. 技术架构与创新
 
-### 3.1 架构概述
+### 3.1 整体架构设计
 
-系统包含一个**主智能体**和三个**专家智能体**。
+系统采用**"会话-请求-消息-智能体-反馈"**全链路解耦架构，通过 **Kafka 消息总线**实现异步通信：
 
-每个智能体可配置多个**工具**。
+- **用户交互层**：会话管理与需求输入
+- **请求管理层**：需求解析与任务生成
+- **消息总线层**：基于 Kafka 的异步通信
+- **智能体执行层**：自举自荐 + 模型推理
+- **反馈层**：多渠道结果传递
 
-<img src="./assets/%E6%9C%AA%E5%91%BD%E5%90%8D%E7%BB%98%E5%9B%BE.jpg" alt="未命名绘图" style="zoom:67%;" />
+<img src="./assets/%E6%9C%AA%E5%91%BD%E5%90%8D%E7%BB%98%E5%9B%BE.jpg" alt="系统架构图" style="zoom:67%;" />
 
-### 3.2 主智能体
+### 3.2 核心技术创新
 
-主智能体负责调度三个专家智能体，以下是主智能体的配置文件：
+#### 3.2.1 主动式 NLI 意图识别算法
+
+- **多语言自适应**：基于 `langdetect` 自动语言检测 + 分语言模型池（中文：xlm-roberta-large-xnli，英文：roberta-large-mnli）
+- **硬件感知优化**：PyTorch 原生 GPU/CPU 自动检测 + 线程池异步推理（ThreadPoolExecutor）
+- **自举自荐机制**：NLI 三分类模型判断"任务-能力匹配度"，实现智能体自主任务接取
+
+#### 3.2.2 跨源 RAG 知识获取机制
+
+- **语义级精准检索**：Embedding 模型 + 向量数据库实现企业知识语义理解
+- **智能补充策略**：内部检索不足时自动触发联网搜索，获取权威外部资源
+- **知识融合生成**：RAG 技术整合内外部信息，生成准确完整的企业级回答
+
+#### 3.2.3 MCP 标准化协作机制
+
+- **统一交互协议**：定义标准化"任务指令格式"、"上下文传递规范"、"结果反馈模板"
+- **动态任务分发**：基于意图识别结果的智能调度（文档操作类→文档专家，知识问答类→检索+搜索+回答流程）
+- **上下文保持**：MCP 协议确保跨智能体任务传递时关键信息不丢失
+
+### 3.3 智能体详细配置
+
+#### 3.3.1 主智能体（调度中枢）
+
+采用 **ReAct Agent** 架构，具备任务解析与动态调度能力：
 
 ```yaml
-# 主智能体 - 调度所有专家智能体
+# 主智能体 - 基于意图识别的智能调度器
 workflow:
   _type: react_agent
   tool_names: [document_expert, search_expert, answer_expert]
@@ -135,7 +176,7 @@ workflow:
 配置文件如下：
 
 ```yaml
-# 专业智能体 - 文档处理专家
+# 文档处理专家 - 基于向量数据库的语义检索
 document_expert:
 _type: tool_calling_agent
 tool_names:
@@ -179,7 +220,7 @@ description: |
 配置文件如下：
 
 ```yaml
-# 专业智能体 - 回答专家
+# 回答专家 - 多源信息整合与企业级输出
 answer_expert:
 _type: react_agent
 tool_names:
@@ -210,39 +251,72 @@ description: |
 ### 方式1：本地调试
 
 ```bash
-# 1.创建一个python虚拟环境
+# 1. 创建 Python 3.12 虚拟环境
 uv venv --seed .venv --python 3.12
 
-# 2.安装依赖
-uv pip install -e .
-uv pip install -e .[langchain]
-uv pip install tavily-python
-uv pip install -e external/aiqtoolkit-server
-uv pip install langchain
-uv pip install langchain_chroma
-uv pip install langchain_dashscope
+# 2. 安装核心依赖
+uv pip install -e .                           # 基础框架
+uv pip install -e .[langchain]               # LangChain 集成
+uv pip install tavily-python                 # 联网搜索工具
+uv pip install -e external/aiqtoolkit-server # 多智能体服务器
 
-# 3.运行后端
+# 3. 安装 RAG 相关组件
+uv pip install langchain langchain_chroma langchain_dashscope
+
+# 4. 启动后端服务（支持多智能体协作）
 aiq serve --config_file external\aiqtoolkit-server\src\my_multi_agent\configs\multi_agent_config.yml --host 0.0.0.0 --port 8001
-API文档:  http://localhost:8001/docs
+# API 文档: http://localhost:8001/docs
 
-# 4.运行前端
+# 5. 启动前端界面
 cd external\aiqtoolkit-opensource-ui
 npm install
 npm run dev
-前端页面: http://localhost:3000
+# 前端页面: http://localhost:3000
 ```
 
-
-
-### 方式2：Docker启动
+#### 方式2：Docker 容器化部署
 
 ```bash
-# 1.启动后端
+# 1. 构建并启动后端容器
 docker build -t aiq-multi-agent:latest -f Dockerfile .
-docker run -d --name aiq-multi-agent -p 8001:8001 aiq-multi-agent:latest
+docker run -d --name aiq-backend \
+  -p 8001:8001 \
+  --gpus all \
+  aiq-multi-agent:latest
 
-# 2.启动前端
-docker build -t aiq-multi-agent-frontend:latest -f external/aiqtoolkit-opensource-ui/Dockerfile external/aiqtoolkit-opensource-ui
-docker run -d --name aiq-multi-agent -p 3000:3000 aiq-multi-agent-frontend:latest
+# 2. 构建并启动前端容器
+docker build -t aiq-frontend:latest \
+  -f external/aiqtoolkit-opensource-ui/Dockerfile \
+  external/aiqtoolkit-opensource-ui
+docker run -d --name aiq-frontend \
+  -p 3000:3000 \
+  aiq-frontend:latest
 ```
+
+## 📊 5. 技术特色总结
+
+### 5.1 意图识别算法优势
+
+- **自适应多语言支持**：自动检测中英文输入，匹配最优NLI模型
+- **硬件感知优化**：动态适配GPU/CPU环境，确保推理效率
+- **自举自荐机制**：智能体主动判断任务匹配度，提升协作精度
+
+### 5.2 多智能体协作创新
+
+- **标准化通信**：MCP协议统一智能体交互格式
+- **动态任务分发**：基于意图识别的智能调度机制
+- **跨源知识融合**：内部检索+外部搜索的全维度RAG
+
+### 5.3 企业级应用价值
+
+- **打破知识孤岛**：语义级检索整合分散知识资源
+- **提升检索效率**：AI驱动的精准意图理解与响应
+- **增强决策支持**：多源信息融合生成可信答案
+
+---
+
+**NVIDIA 2025 Hackathon 年度总决赛作品**
+
+**团队**：自邮之翼-佛（北京邮电大学）
+
+**核心技术**：NLI意图推理 + RAG检索增强 + MCP多智能体协作 + NVIDIA硬件加速
